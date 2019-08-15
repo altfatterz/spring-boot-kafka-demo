@@ -22,7 +22,7 @@ public class EventsTransformerApplication {
 @Slf4j
 class MovieEventsTransformer {
 
-	private static final String TOPIC = "movies";
+	private static final String TOPIC = "raw-movies";
 
 	@KafkaListener(topics = TOPIC)
 	public void consume(Movie movie) {
