@@ -5,8 +5,15 @@
 The following fails:
 
 ```bash
-$ docker exec -i schema-registry /usr/bin/kafka-avro-console-producer --topic raw-movies --broker-list broker:9092 --property value.schema="$(< src/main/avro/input-movie-event.avsc)"
+$ docker exec -i schema-registry /usr/bin/kafka-avro-console-producer --broker-list broker:9092 --topic raw-movies --property value.schema="$(< src/main/avro/input-movie-event.avsc)"
 ```
+
+Installing from zip then this works:
+
+```bash
+$ kafka-avro-console-producer --broker-list localhost:9092 --topic raw-movies --property value.schema="$(<src/main/avro/input-movie-event.avsc)"
+```
+
 
 ```
 [2019-08-15 21:59:43,728] WARN [Producer clientId=console-producer] Connection to node 1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
@@ -31,8 +38,12 @@ Kafka UI: https://www.conduktor.io/
 
 Delete a topic
 ```bash
-$ docker exec -it broker /usr/bin/kafka-topics --delete --bootstrap-server localhost:9092 --topic movies
+$ docker exec -it broker /usr/bin/kafka-topics --delete --bootstrap-server localhost:9092 --topic raw-movies
 ```
+
+
+
+
 
 Older version, but good example using avro:
 `https://docs.confluent.io/3.0.0/quickstart.html`
